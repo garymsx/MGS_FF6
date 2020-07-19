@@ -1,0 +1,174 @@
+;[gain=1.0 name=FF6_53 duration=300s fade=5s]
+#opll_mode 0
+#tempo 125
+#title { "Final Fantasy VIより 仲間を求めて (C)SQUARE ENIX"}
+
+;#alloc {4=1200}
+;#alloc {5=1200}
+;#alloc {6=1200}
+;#alloc {7=1200}
+;#alloc {9=1200}
+;#alloc {a=1200}
+
+@e0  = {1, 0, f }
+@e1  = {1, 0, adf[ffeeeddddeeeff] }
+
+@e10 = {3,20, fdb975310 }
+@e11 = {3,20, fd0=64 }
+
+@e20 = {0, 0, abcdef}
+@e25 = {0, 0, fe0=32}
+
+;* コーラス
+;       TL FB AR DR SL RR KL MT,AM,VB,EG,KR,DT
+@v15 = {40, 0,15, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1
+             , 8, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0}
+
+;* フルート
+;       TL FB AR DR SL RR KL MT,AM,VB,EG,KR,DT
+@v16 = {30, 0,15, 7, 3, 0, 1, 2, 0, 1, 0, 0, 1
+             , 8, 0, 0, 4, 0, 1, 1, 0, 1, 0, 0}
+
+; ストリングス (T_SAW(%X) * 32 + T_SAW(%X * 2) * 24 + T_SIN(%X * 4) * 32)
+@s00 = { C8E4F2EE DDCBC7D6 F10D1C17 06F4F0FF
+         E905130F FEECE8F7 122E3D38 27161120 }
+
+;123456789ABCDEFGH !
+;123456789ABCDFGH !
+
+#macro_offset A = 100
+
+*0 = {Y6,255 Y7,255}
+;*1 = {Y14,32 Y39,5 Y23,80 Y40,1 Y24,192}
+*1 = {Y14,32 Y39,0 Y23,171 Y40,1 Y24,192}
+
+4    @0 @e1 V6  O4 L4 H0,1,2,1
+5    @0 @e1 V6  O4 L4 H0,1,2,1 \1
+45   a1 b1> c1  d1
+
+45  [
+45   e1& e2.d c1    d1
+45   e1& e2d2 c2d2  c1
+45   e1& e2.d c1    d1
+45   e1& e2d2 c2d2& d1 c+1
+
+45   e1  d1&   d1 c1
+45   c1& c2<b2 b1> c1
+45   e1  d+1&  d+1 c+1
+45   c1  d1    d+1 d1
+45   d1& d1&   d1& d1
+45 ]0
+
+6    @0 @e1 V6  O4 L4 H0,1,2,1
+7    @0 @e1 V6  O4 L4 H0,1,2,1 \1
+67   e1 f+1 g1  a1
+67  [
+67   a1& a2g2 e2f2   f+2g+2
+67   a1  g1    f+2e2 e1
+67   a1& a2g2 e2f2   f+2g+2
+67   a1  g1    f+2e2 e1&    e1>
+
+67   c1<  b1& b1   a1
+67   a1   g1& g1   a1>
+67   c1<  b1& b1   a1
+67   a1&  a1  g1&  g1
+67   f+1& f+1 g+1& g+1
+67 ]0
+
+8    @0 @e1 V7  O4 L4 H0,1,2,1
+D    @6 @e1 V11 O5 L4 H0,1,2,1 \2
+8D   c1 d1 e1 f+1
+8D [
+8D   c1< b1 a1    b1>
+8D   c1< b1 a2g+2 a1>
+8D   c1< b1 a1    b1>
+8D   c1< b1 a2g+2 a1& a1>
+
+8D   a1  g1& g1  e1
+8D   f1& f1  e1& e1
+8D   a1  g1& g1  e1
+8D   f1& f1  f1  d+1
+8D   d1& d1  e1& e1
+8D ]0
+
+9    @15 V12 O5 L4 H20,1,1,3
+A    @15 V10 O5 L4 H20,1,1,3 \1 r16
+9    a1 b1> c1 d1
+A    a1 b1> c1 d2...
+
+A    r16
+9A [
+9A   [
+9      @16 V14 O6 L8 H20,1,1,3
+A      @16 V12 O6 L8 H20,1,1,3 \1
+9A     a2>c2< b4a4g4cd   e4.ed4cd   e1
+9A     a2>c2  d4c4<b4g4  a4>c4<b4g4 | a2.r4
+9A   ] a1& a2.r4
+
+9    @15 V14 O5 L4 H20,1,1,3
+A    @15 V12 O5 L4 H20,1,1,3 \1
+9A   r4a4>c4<a4 b4a4g4a4 b2.>d4 c1
+
+9A   r4
+9    @16 V14 O7 L8 H20,1,1,3
+A    @16 V12 O7 L8 H20,1,1,3 \1
+9A   f4a4f4 g4f4e4f4 g1 r1
+
+9    @15 V14 O5 L4 H20,1,1,3
+A    @15 V12 O5 L4 H20,1,1,3 \1
+9A   r4a4>c4<a4 b4a4g4a4 b2.>d4 c+1
+
+9    *0 @16 V14 O7 L8 H20,1,1,3
+A       @16 V12 O7 L8 H20,1,1,3 \1
+9A   e2.d8c8< a1 r4g4a4a+4> d+4d4c4<a+4
+9A   a1& a1 r1 r1
+9A ]0
+
+B    @7  V13 O3 L16    H10,1,1,3 Q7 SO
+C    @13 V14 O2 L16 \2 H10,1,1,3
+BC   a2..d+e a1 a2..d+e< a2.>e8&e_<g8>
+
+BC [
+BC   a4.g8f4.d&d+ e4d8&d_c8c2        f4.f8d8.>d8.<d+8 e2&e8f+4g+8
+BC   a4.g8f4.e&f  g4d+8&e8f8.>e8.d+8 d4<d8d+8e8.b8.g8 a2.>e_<b4
+BC   a4.g8f4.d&d+ e4d8&d_c8c2        f4.f8d8.>d8.<d+8 e2&e8f+4g+8
+BC   a4.g8f4.e&f  g4d+8&e8f8.>e8.d+8 d4<d8d+8e8.b8.g8 a2.e4 < a1>
+
+BC   f8f8r8>c8r8f4c8< f8f8r4f8f8r4      e8e8r8b8r8>e4<b8    a8a8r4.>e8<a8e8
+BC   d8d8r8a8r8>d4<a8 g8g8r4g8g8r4>     c8c8r8<g8r8>c4<g8   a8a8r4g8g8r4
+BC   f8f8r8>c8r8f4c8< f8f8r4f8f8r4      e8e8r8b8r8>e4<b8    a8a8r4.>e8<a8e8
+BC   d8d8r8a8r8>d4<a8 b-8b-8r4b-8b-8r4  d+8d+8r8a+8r8>d+4d8 c8c8r4<g8g8r4
+BC   e8e8r8b8r8>e4<b8 e8e8r4e8e8r4      e8e8r8b8r8>e4<b8    d_e8&e8e8f4&f+8>e8<g+8
+BC ]0
+
+E   [r1]4
+E [
+E   L16
+E   [@0 @e20 V13 O7 a8 @10 O5 V10 aa8a8 @13 O6 a8a8 @10 O5 aa8a8]17
+E   @15 V12 O5 L4 H20,1,1,3
+E   r4f4a4f4 g4f4e4f4 g2.b4 a1
+E   r4
+E   @16 V14 O7 L8 H20,1,1,3
+E   d4f4d4 e4d4c4d4 e1 r1
+E   @15 V12 O5 L4 H20,1,1,3
+E   r4f4a4f4 g4f4e4f4 g2.b4 a1
+E   @16 V14 O7 L8 H20,1,1,3
+E   c2.<ba f1 r4 d+4f4g4> c4<a+4a4g4
+E   f+1& f+1 r1 r1
+E ]0
+
+G   *1 @14 V12 @e25 Q1 SO L16 O1
+G   [r1]4
+G  [
+G   gf+fe V- d+dc+c V- cc+dd+ V- eff+g V- 
+G   gf+fe V+ d+dc+c V+ cc+dd+ V+ eff+g V+
+G  ]0
+
+H   @14 V9 L16 O7
+H   V-4 [[grgg]4 V+]4
+H   [grgggrgggggggrgg]0
+
+3   V10 L16 O8
+3   V-4 [[@e11 g8 @e10 gg]4 V+]4
+3   [[@e11 g8 @e10 gg] gggg @e11 g8 @e10 gg]0
+
